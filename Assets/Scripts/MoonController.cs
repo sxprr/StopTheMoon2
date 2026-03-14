@@ -5,10 +5,13 @@ using UnityEngine.Events;
 
 public class MoonController : MonoBehaviour
 {
-
+    
     public GameObject Player;
     public GameManager game;
+
+
     public UnityEvent playerApproach;
+    
 
     [SerializeField] private float shakeHeight;
     private bool hasTriggeredShake = false;

@@ -5,20 +5,20 @@ using UnityEngine.Events;
 
 public static class GameEvents 
 {
-    // Shouted when 'E' is pressed
-    public static event Action OnMoonMash;
+    // The "Shout" - fired whenever 'E' is pressed
+    public static event Action OnMoonResist;
 
-    public static void TriggerMoonMash()
+    public static void TriggerMoonResist()
     {
-        OnMoonMash?.Invoke();
+        OnMoonResist?.Invoke();
     }
 
-    // Shouted when the player wins
-    public static event Action OnVictory;
+    // The "Victory" - fired when ePressesToWin is reached
+    public static event Action OnVictoryAchieved;
 
     public static void TriggerVictory()
     {
-        OnVictory?.Invoke();
+        OnVictoryAchieved?.Invoke();
     }
 
 
