@@ -54,6 +54,8 @@ public class MoonController : MonoBehaviour
         {
             Debug.Log("Moon collides with player and is sent back to menu");
             game.OnGameStateChanged.Invoke();
+
+            //TESTING git bash
            
         }
     }
