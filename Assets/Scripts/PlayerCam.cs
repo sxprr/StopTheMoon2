@@ -50,8 +50,10 @@ public class PlayerCam : MonoBehaviour
         LeMoon = moon.GetComponent<Rigidbody>();
         MoonSize = moon.GetComponent<Transform>();
         currentStamina = MaxStamina;
+
+        /* obj ref not needed
         staminaBar.SetMaxStamina(MaxStamina);
-        
+        */
     }
 
     // Update is called once per frame
@@ -144,7 +146,9 @@ public class PlayerCam : MonoBehaviour
     void Exert(float effort)
     {
         currentStamina -= effort;
-        staminaBar.SetStamina(currentStamina);
+
+        // obj ref not needed
+        //staminaBar.SetStamina(currentStamina);
     }
 
     void TriggerVictory()

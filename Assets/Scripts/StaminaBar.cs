@@ -5,34 +5,24 @@ using UnityEngine.UI;
 
 public class StaminaBar : MonoBehaviour
 {
-    public float maxStamina = 100f;
-    private float currentStamina;
-
-    void Start()
-    {
-        currentStamina = maxStamina;
-    }
+    public Scrollbar scrollbar;
 
     private void OnEnable()
     {
-        // Start listening for the "E" press event
-        GameEvents.OnMoonResist += DecreaseStamina;
+        // We add a new event to GameEvents specifically for data updates
+        //GameEvents.OnStaminaChanged += UpdateVisuals;
     }
 
     private void OnDisable()
     {
-        // Stop listening (Very important to prevent memory leaks!)
-        GameEvents.OnMoonResist -= DecreaseStamina;
+        //GameEvents.OnStaminaChanged -= UpdateVisuals;
     }
 
-    void DecreaseStamina()
+    // This method ONLY handles the UI component
+    private void UpdateVisuals(float percentage)
     {
-        currentStamina -= 1f;
-        currentStamina = Mathf.Clamp(currentStamina, 0, maxStamina);
-
-        // Bonus: We can create a NEW event to tell the UI to update!
-        // GameEvents.TriggerStaminaChanged(currentStamina / maxStamina);
+        scrollbar.size = percentage;
+        Debug.Log("UI Updated to: " + percentage);
     }
-
 
 }
