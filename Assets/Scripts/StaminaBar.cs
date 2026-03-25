@@ -10,12 +10,12 @@ public class StaminaBar : MonoBehaviour
     private void OnEnable()
     {
         // We add a new event to GameEvents specifically for data updates
-        //GameEvents.OnStaminaChanged += UpdateVisuals;
+        GameEvents.OnStaminaChanged += UpdateVisuals;
     }
 
     private void OnDisable()
     {
-        //GameEvents.OnStaminaChanged -= UpdateVisuals;
+        GameEvents.OnStaminaChanged -= UpdateVisuals;
     }
 
     // This method ONLY handles the UI component
@@ -24,5 +24,6 @@ public class StaminaBar : MonoBehaviour
         scrollbar.size = percentage;
         Debug.Log("UI Updated to: " + percentage);
     }
+
 
 }

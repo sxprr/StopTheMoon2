@@ -38,8 +38,6 @@ public class PlayerCam : MonoBehaviour
     private int currentPresses = 0;
     public MenuFunctionality Success;
     
-   
-
 
     // Start is called before the first frame update
     private void Start()
@@ -60,19 +58,6 @@ public class PlayerCam : MonoBehaviour
     void Update()
     {
         HandleLook();
-
-        // the "F" was purely for debugging. will remove later.
-        // who knows, could be used for multiplayer.
-        /*
-        if(Input.GetKeyDown(KeyCode.F))
-        {
-            Debug.Log("F pressed.");
-            LeMoon.mass -= 0.1f;
-            LeMoon.drag -= 0.1f;
-            Debug.Log(LeMoon.mass);
-            Debug.Log(LeMoon.drag);
-        }
-        */
 
         if (Input.GetKeyDown(KeyCode.E))
         {
@@ -108,17 +93,6 @@ public class PlayerCam : MonoBehaviour
             // Debugs (Optional: remove these for the Final Build to save performance)
             Debug.Log($"Moon slowed! Mass: {LeMoon.mass}, Drag: {LeMoon.drag}, Stamina: {currentStamina}");
         }
-
-        /*
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            Debug.Log("C pressed.");
-            LeMoon.mass += 0.1f;
-            Debug.Log(LeMoon.mass);
-            MoonSize.transform.localScale += MoonScale;
-
-        }
-        */
     }
 
     private void HandleLook()
@@ -131,6 +105,7 @@ public class PlayerCam : MonoBehaviour
 
         xRotation += mouseY;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+
 
         //rotate cam and orientation
         transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
@@ -176,5 +151,35 @@ public class PlayerCam : MonoBehaviour
 
         //Update high score
         Scoring.UpdateHighScore();
+    }
+
+    private void FButtonControls()
+    {
+        // the "F" was purely for debugging. will remove later.
+        // who knows, could be used for multiplayer.
+        
+        if(Input.GetKeyDown(KeyCode.F))
+        {
+            Debug.Log("F pressed.");
+            LeMoon.mass -= 0.1f;
+            LeMoon.drag -= 0.1f;
+            Debug.Log(LeMoon.mass);
+            Debug.Log(LeMoon.drag);
+        }
+        
+    }
+
+    private void CButtonControls()
+    {
+        
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            Debug.Log("C pressed.");
+            LeMoon.mass += 0.1f;
+            Debug.Log(LeMoon.mass);
+            MoonSize.transform.localScale += MoonScale;
+
+        }
+        
     }
 }

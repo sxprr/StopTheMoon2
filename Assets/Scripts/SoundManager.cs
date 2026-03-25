@@ -14,6 +14,7 @@ public class SoundManager : MonoBehaviour
 
     // Singleton instance.
     public static SoundManager Instance;
+    
 
     // Initialize the singleton instance.
     private void Awake()
@@ -34,6 +35,8 @@ public class SoundManager : MonoBehaviour
     {
         EffectsSource.clip = clip;
         EffectsSource.Play();
+
+        AudioClip buttonSound = GetComponent<AudioClip>();
     }
 
     // Play a single clip through the music source.
@@ -57,5 +60,10 @@ public class SoundManager : MonoBehaviour
     public void TurnItOff()
     {
         
+    }
+
+    public void PlayButtonSound()
+    {
+       
     }
 }

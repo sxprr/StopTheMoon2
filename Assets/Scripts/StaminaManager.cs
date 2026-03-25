@@ -34,7 +34,7 @@ public class StaminaManager : MonoBehaviour
 
         // broadcast new message
         float percent = currentStamina / maxStamina;
-        GameEvents.TriggerStaminaChange(percent);
+        GameEvents.TriggerStaminaChanged(percent);
 
         // Bonus: We can create a NEW event to tell the UI to update!
         // GameEvents.TriggerStaminaChanged(currentStamina / maxStamina);
