@@ -9,9 +9,9 @@ public class MoonController : MonoBehaviour
     public GameObject Player;
     public GameManager game;
 
-
     public UnityEvent playerApproach;
-    
+
+    private Rigidbody rb;
 
     [SerializeField] private float shakeHeight;
     private bool hasTriggeredShake = false;
@@ -21,8 +21,14 @@ public class MoonController : MonoBehaviour
     void Start()
     {
         Rigidbody MoonRg = Player.GetComponent<Rigidbody>();
+
         //Set color when scene starts
         GetComponent<Renderer>().material.color = new Color32(229, 14, 0, 255);
+    }
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -61,5 +67,22 @@ public class MoonController : MonoBehaviour
             //TESTING git bash
            
         }
+    }
+
+    private void OnEnable()
+    {
+        // Start listening for the "E" press
+        GameEvents.OnMoonResist += IncreaseMoonMassAndDrag;
+    }
+
+    private void OnDisable()
+    {
+        // Always unsubscribe to prevent errors when switching scenes
+        GameEvents.OnMoonResist -= IncreaseMoonMassAndDrag;
+    }
+    public void IncreaseMoonMassAndDrag()
+    {
+        rb.mass += 0.1f;
+        rb.drag += 0.1f;
     }
 }

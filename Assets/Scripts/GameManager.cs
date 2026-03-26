@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEditor;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,7 +13,15 @@ public class GameManager : MonoBehaviour
 
     public UnityEvent OnGameStateChanged;
 
+    public int ePressesToWin = 100;
+    private int currentPresses;
+    private bool victoryTriggered = false;
+
     // Do I need this? Let me focus on Events and Delegates
+
+    private void OnEnable() => GameEvents.OnMoonResist += CheckProgress;
+    private void OnDisable() => GameEvents.OnMoonResist -= CheckProgress;
+
     public enum GameState
     {
         Victory,
@@ -22,6 +31,19 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+    }
+
+    void CheckProgress()
+    {
+        
+        if (victoryTriggered) return;
+
+        currentPresses++;
+        if (currentPresses >= ePressesToWin)
+        {
+            victoryTriggered = true;
+            GameEvents.TriggerVictory(); // The big shout!
+        }
     }
 
     public void UpdateGameState(GameState newState)

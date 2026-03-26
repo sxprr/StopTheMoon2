@@ -33,11 +33,12 @@ public class PlayerCam : MonoBehaviour
     public float MaxStamina = 100f;
     public float currentStamina;
 
+    /*
     [Header("Victory Settings")]
     public int ePressesToWin = 100;
     private int currentPresses = 0;
     public MenuFunctionality Success;
-    
+    */
 
     // Start is called before the first frame update
     private void Start()
