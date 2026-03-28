@@ -8,6 +8,8 @@ public class SoundManager : MonoBehaviour
     public AudioSource EffectsSource;
     public AudioSource MusicSource;
 
+    public AudioSource buttonSound;
+
     // Random pitch adjustment range.
     public float LowPitchRange = .95f;
     public float HighPitchRange = 1.05f;
@@ -62,8 +64,14 @@ public class SoundManager : MonoBehaviour
         
     }
 
+    private void OnEnable()
+    {
+        GameEvents.OnVictoryAchieved += PlayButtonSound;
+    }
+
+    // listen to E event.
     public void PlayButtonSound()
     {
-       
+        buttonSound.Play();
     }
 }

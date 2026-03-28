@@ -28,17 +28,18 @@ public class PlayerCam : MonoBehaviour
     //ScoreManager object
     public ScoreManager Scoring;
 
+    /*
     //stamina bar
     public StaminaBar staminaBar;
     public float MaxStamina = 100f;
     public float currentStamina;
-
-    /*
+    */
+    
     [Header("Victory Settings")]
     public int ePressesToWin = 100;
     private int currentPresses = 0;
     public MenuFunctionality Success;
-    */
+    
 
     // Start is called before the first frame update
     private void Start()
@@ -48,7 +49,7 @@ public class PlayerCam : MonoBehaviour
         Cursor.visible = false;
         LeMoon = moon.GetComponent<Rigidbody>();
         MoonSize = moon.GetComponent<Transform>();
-        currentStamina = MaxStamina;
+        //currentStamina = MaxStamina;
 
         /* obj ref not needed
         staminaBar.SetMaxStamina(MaxStamina);
@@ -59,41 +60,7 @@ public class PlayerCam : MonoBehaviour
     void Update()
     {
         HandleLook();
-
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            // 1. EXIT if game is over (stops the post-death scoring bug)
-            // 2. EXIT if stamina is too low (prevents 'Exert' from going negative)
-            if (MenuFunctionality.isGameOver || currentStamina <= 0)
-            {
-                return;
-            }
-
-            // --- Logic only runs if the checks above pass ---
-
-            currentPresses++;
-
-            if (currentPresses >= ePressesToWin)
-            {
-                TriggerVictory();
-            }
-
-            // Increase Moon mass and drag
-            LeMoon.mass += 0.1f;
-            LeMoon.drag += 0.1f;
-
-            // Score
-            Scoring.UpdateScore(1f);
-
-            // SFX
-            ButtonPress.Play();
-
-            // Decrement stamina
-            Exert(1);
-
-            // Debugs (Optional: remove these for the Final Build to save performance)
-            Debug.Log($"Moon slowed! Mass: {LeMoon.mass}, Drag: {LeMoon.drag}, Stamina: {currentStamina}");
-        }
+        ExecuteMainLoop();
     }
 
     private void HandleLook()
@@ -121,7 +88,7 @@ public class PlayerCam : MonoBehaviour
 
     void Exert(float effort)
     {
-        currentStamina -= effort;
+        //currentStamina -= effort;
 
         // obj ref not needed
         //staminaBar.SetStamina(currentStamina);
@@ -145,13 +112,51 @@ public class PlayerCam : MonoBehaviour
         Debug.Log("THE MOON HAS STOPPED. YOU WIN!");
 
         // There's probably a more effecient way to call this method.
-        Success.DisplayVictory();
+        //Success.DisplayVictory();
 
         //Change moon color:
         LeMoon.GetComponent<Renderer>().material.color = new Color32(90, 215, 255, 255);
 
         //Update high score
         Scoring.UpdateHighScore();
+    }
+
+    void ExecuteMainLoop()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            // 1. EXIT if game is over (stops the post-death scoring bug)
+            // 2. EXIT if stamina is too low (prevents 'Exert' from going negative)
+            if (MenuFunctionality.isGameOver) //currentStamina <= 0)
+            {
+                return;
+            }
+
+            // --- Logic only runs if the checks above pass ---
+
+            currentPresses++;
+
+            if (currentPresses >= ePressesToWin)
+            {
+                TriggerVictory();
+            }
+
+            // Increase Moon mass and drag
+            LeMoon.mass += 0.1f;
+            LeMoon.drag += 0.1f;
+
+            // Score
+            Scoring.UpdateScore(1f);
+
+            // SFX
+            ButtonPress.Play();
+
+            // Decrement stamina
+            Exert(1);
+
+            // Debugs (Optional: remove these for the Final Build to save performance)
+            //Debug.Log($"Moon slowed! Mass: {LeMoon.mass}, Drag: {LeMoon.drag}, Stamina: {currentStamina}")
+        }
     }
 
     private void FButtonControls()

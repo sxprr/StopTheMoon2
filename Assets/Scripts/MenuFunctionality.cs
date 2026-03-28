@@ -102,7 +102,6 @@ public class MenuFunctionality : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
 
-
     }
 
     public void ResumeGame()
@@ -142,6 +141,8 @@ public class MenuFunctionality : MonoBehaviour
 
     }
 
+    // tell the methods to listen.
+    private void OnEnable() => GameEvents.OnVictoryAchieved += DisplayVictory;
 
 
 }

@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class MoonController : MonoBehaviour
 {
-    
+
     public GameObject Player;
     public GameManager game;
 
@@ -15,7 +15,7 @@ public class MoonController : MonoBehaviour
 
     [SerializeField] private float shakeHeight;
     private bool hasTriggeredShake = false;
-    
+
 
     // Start is called before the first frame update
     void Start()
@@ -59,13 +59,13 @@ public class MoonController : MonoBehaviour
     // When the moon hits player. (Idek if this works or not.)
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player"))
         {
             Debug.Log("Moon collides with player and is sent back to menu");
             game.OnGameStateChanged.Invoke();
 
             //TESTING git bash
-           
+
         }
     }
 
@@ -73,6 +73,7 @@ public class MoonController : MonoBehaviour
     {
         // Start listening for the "E" press
         GameEvents.OnMoonResist += IncreaseMoonMassAndDrag;
+        //GameEvents.OnVictory += FreezeMoon; // New Listener
     }
 
     private void OnDisable()
@@ -84,5 +85,16 @@ public class MoonController : MonoBehaviour
     {
         rb.mass += 0.1f;
         rb.drag += 0.1f;
+    }
+
+    void FreezeMoon()
+    {
+        //rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+        rb.useGravity = false;
+        rb.isKinematic = true;
+
+        // Using your "Color32" fix from the post-mortem!
+        GetComponent<Renderer>().material.color = new Color32(90, 215, 255, 255);
     }
 }

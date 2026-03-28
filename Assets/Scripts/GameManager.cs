@@ -10,14 +10,12 @@ public class GameManager : MonoBehaviour
 
     public static GameManager instance;
     public GameState State;
-
     public UnityEvent OnGameStateChanged;
 
-    public int ePressesToWin = 100;
-    private int currentPresses;
+    // 1. Variable must be declared here (Class Scope)
     private bool victoryTriggered = false;
-
-    // Do I need this? Let me focus on Events and Delegates
+    public int ePressesToWin = 100;
+    private int currentPresses = 0;
 
     private void OnEnable() => GameEvents.OnMoonResist += CheckProgress;
     private void OnDisable() => GameEvents.OnMoonResist -= CheckProgress;
@@ -35,7 +33,6 @@ public class GameManager : MonoBehaviour
 
     void CheckProgress()
     {
-        
         if (victoryTriggered) return;
 
         currentPresses++;
