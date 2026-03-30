@@ -29,6 +29,22 @@ public class ScoreManager : MonoBehaviour
         
     }
 
+    private void OnEnable()
+    {
+        // Start listening for the "E" press event
+        GameEvents.OnVictoryAchieved += UpdateHighScore;
+        
+
+    }
+
+    private void OnDisable()
+    {
+        // Stop listening (Very important to prevent memory leaks!)
+        GameEvents.OnVictoryAchieved -= UpdateHighScore;
+        
+    }
+
+
     public void UpdateScore(float newScore)
     {
         score += 1;
@@ -55,4 +71,6 @@ public class ScoreManager : MonoBehaviour
         highScoreText.text = "Best: " + highscore.ToString();
         //GameOverscoreText.text = "Score: " + score.ToString();
     }
+
+
 }

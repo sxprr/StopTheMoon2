@@ -56,7 +56,7 @@ public class MoonController : MonoBehaviour
         }
     }
 
-    // When the moon hits player. (Idek if this works or not.)
+    // When the moon hits player. (I was fooling around and use unity's 'UnityEvents system to do this')
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
@@ -64,7 +64,7 @@ public class MoonController : MonoBehaviour
             Debug.Log("Moon collides with player and is sent back to menu");
             game.OnGameStateChanged.Invoke();
 
-            //TESTING git bash
+            //TESTING git bash (delete this later)
 
         }
     }
@@ -73,13 +73,14 @@ public class MoonController : MonoBehaviour
     {
         // Start listening for the "E" press
         GameEvents.OnMoonResist += IncreaseMoonMassAndDrag;
-        //GameEvents.OnVictory += FreezeMoon; // New Listener
+        GameEvents.OnVictoryAchieved += FreezeMoon; // New Listener
     }
 
     private void OnDisable()
     {
         // Always unsubscribe to prevent errors when switching scenes
         GameEvents.OnMoonResist -= IncreaseMoonMassAndDrag;
+        GameEvents.OnVictoryAchieved -= FreezeMoon;
     }
     public void IncreaseMoonMassAndDrag()
     {

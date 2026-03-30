@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 345888918844029268}
   - component: {fileID: 424875754084069}
-  - component: {fileID: 8794008392866968966}
   - component: {fileID: 7259037460936386576}
+  - component: {fileID: 3107953829475729604}
   m_Layer: 0
   m_Name: SoundManager
   m_TagString: Untagged
@@ -130,22 +130,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &8794008392866968966
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 338872876528410657}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39c5e2cbcc5296445ab502f045037d60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  EffectsSource: {fileID: 7259037460936386576}
-  MusicSource: {fileID: 424875754084069}
-  LowPitchRange: 0.95
-  HighPitchRange: 1.05
 --- !u!82 &7259037460936386576
 AudioSource:
   m_ObjectHideFlags: 0
@@ -242,3 +226,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &3107953829475729604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 338872876528410657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39c5e2cbcc5296445ab502f045037d60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EffectsSource: {fileID: 0}
+  MusicSource: {fileID: 0}
+  buttonSound: {fileID: 7259037460936386576}
+  LowPitchRange: 0.95
+  HighPitchRange: 1.05

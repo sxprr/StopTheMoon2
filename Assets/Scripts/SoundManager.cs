@@ -66,12 +66,25 @@ public class SoundManager : MonoBehaviour
 
     private void OnEnable()
     {
-        GameEvents.OnVictoryAchieved += PlayButtonSound;
+        GameEvents.OnMoonResist += PlayButtonSound;
+    }
+
+    private void OnDisable()
+    {
+        GameEvents.OnMoonResist -= PlayButtonSound;
     }
 
     // listen to E event.
     public void PlayButtonSound()
     {
-        buttonSound.Play();
+        
+        if (buttonSound != null)
+        {
+            buttonSound.Play();
+        }
+        else
+        {
+            Debug.LogWarning("SoundManager: You forgot to assign the AudioSource in the Inspector!");
+        }
     }
 }
