@@ -5,12 +5,14 @@ using UnityEngine.Events;
 
 public class MoonController : MonoBehaviour
 {
-
+    // player reference
     public GameObject Player;
-    public GameManager game;
 
+    //moon event reference (deprecated)
+    public GameManager game;
     public UnityEvent playerApproach;
 
+    // moon rigidbody reference required for raycast
     private Rigidbody rb;
 
     [SerializeField] private float shakeHeight;
@@ -56,19 +58,20 @@ public class MoonController : MonoBehaviour
         }
     }
 
-    // When the moon hits player. (I was fooling around and use unity's 'UnityEvents system to do this')
+    /*
+    // When the moon hits player. (deprecated)
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
             Debug.Log("Moon collides with player and is sent back to menu");
-            game.OnGameStateChanged.Invoke();
-
-            //TESTING git bash (delete this later)
+            game.OnGameStateChanged.Invoke();        
 
         }
     }
+    */
 
+    // events and listeners
     private void OnEnable()
     {
         // Start listening for the "E" press
@@ -82,6 +85,8 @@ public class MoonController : MonoBehaviour
         GameEvents.OnMoonResist -= IncreaseMoonMassAndDrag;
         GameEvents.OnVictoryAchieved -= FreezeMoon;
     }
+
+    // methods that will be listening.
     public void IncreaseMoonMassAndDrag()
     {
         rb.mass += 0.1f;

@@ -141,10 +141,20 @@ public class MenuFunctionality : MonoBehaviour
 
     }
 
-    // tell the methods to listen.
-    private void OnEnable() => GameEvents.OnVictoryAchieved += DisplayVictory;
+    // tell the methods to listen (OnVictor).
+    private void OnEnable()
+    {
+        GameEvents.OnVictoryAchieved += DisplayVictory;
+        GameEvents.OnPlayerImpact += DisplayGameOver;
+    }
+   
 
-    private void OnDisable() => GameEvents.OnVictoryAchieved -= DisplayVictory;
+    private void OnDisable()
+    {
+        GameEvents.OnVictoryAchieved -= DisplayVictory;
+        GameEvents.OnPlayerImpact -= DisplayGameOver;
+    }
+    
 
 
 }

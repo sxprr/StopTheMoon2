@@ -8,6 +8,8 @@ public static class GameEvents
 {
     // The "Shout" - fired whenever 'E' is pressed
     public static event Action OnMoonResist;
+    public static event Action OnPlayerImpact;
+    public static void TriggerFailure() => OnPlayerImpact?.Invoke();
 
     public static void TriggerMoonResist()
     {
