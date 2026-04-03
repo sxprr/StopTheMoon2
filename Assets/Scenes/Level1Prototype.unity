@@ -5228,7 +5228,7 @@ PrefabInstance:
       objectReference: {fileID: 1929295923}
     - target: {fileID: 7327400283618643782, guid: 403d6e3f5dc08ff41b89debc6c9bbcc7, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7327400283618643782, guid: 403d6e3f5dc08ff41b89debc6c9bbcc7, type: 3}
       propertyPath: shakeHeight
@@ -5266,6 +5266,10 @@ PrefabInstance:
       propertyPath: playerApproach.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: Cinemachine.CinemachineImpulseSource, Cinemachine
       objectReference: {fileID: 0}
+    - target: {fileID: 8018659011064279113, guid: 403d6e3f5dc08ff41b89debc6c9bbcc7, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 8018659011064279113, guid: 403d6e3f5dc08ff41b89debc6c9bbcc7, type: 3}
       propertyPath: m_Name
       value: Moon

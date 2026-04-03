@@ -91,16 +91,25 @@ public class MoonController : MonoBehaviour
     {
         rb.mass += 0.1f;
         rb.drag += 0.1f;
+
+        // TRACKER: This tells us the event successfully reached the Moon.
+        // It also prints the current values so you can see if 0.1 is "enough".
+        Debug.Log($"<color=cyan>Moon Resist:</color> Event Received! New Mass: {rb.mass} | New Drag: {rb.drag}");
     }
 
     void FreezeMoon()
     {
-        //rb.linearVelocity = Vector3.zero;
+        // 1. Kill the current movement immediately
+        rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
+
+        // 2. Stop future movement
         rb.useGravity = false;
         rb.isKinematic = true;
 
-        // Using your "Color32" fix from the post-mortem!
+        // 3. Visual confirmation
         GetComponent<Renderer>().material.color = new Color32(90, 215, 255, 255);
+
+        Debug.Log("<color=cyan>Moon Logic:</color> Velocity killed. Moon is officially frozen.");
     }
 }
