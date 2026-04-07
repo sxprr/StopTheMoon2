@@ -8,6 +8,12 @@ public class StaminaManager : MonoBehaviour
     public float maxStamina = 100f;
     private float currentStamina;
 
+    private void Awake()
+    {
+        // This will pop up in the console the second you press Play.
+        // If you don't see it, you know immediately the script is missing from the scene.
+        Debug.Log($"<color=green>SUCCESS:</color> {gameObject.name} has entered the chat.");
+    }
 
     void Start()
     {
@@ -37,7 +43,9 @@ public class StaminaManager : MonoBehaviour
         GameEvents.TriggerStaminaChanged(percent);
 
         // Bonus: We can create a NEW event to tell the UI to update!
-        // GameEvents.TriggerStaminaChanged(currentStamina / maxStamina);
+        GameEvents.TriggerStaminaChanged(currentStamina / maxStamina);
+
+        Debug.Log($"<color=orange>Stamina Logic:</color> Current: {currentStamina} | Percent: {percent}");
     }
 
 }

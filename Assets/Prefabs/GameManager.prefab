@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 931302412364860567}
   - component: {fileID: 1364895053714333970}
+  - component: {fileID: 5133547997181230267}
+  - component: {fileID: 7844982628956353963}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -44,3 +46,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dbebe7e079602142a06ac4f9568da85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  State: 0
+  OnGameStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  ePressesToWin: 100
+--- !u!114 &5133547997181230267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6330877393063118973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b0bda76debcf434cbe95c3d99c9a18b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameOverscoreText: {fileID: 0}
+  VictoryscoreText: {fileID: 0}
+  highScoreText: {fileID: 420044684391694176, guid: 2fb61e9ecce71fd408461f389ea9bac1, type: 3}
+--- !u!114 &7844982628956353963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6330877393063118973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2222ec49f177f6e47870e097676c99a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxStamina: 100

@@ -29,6 +29,10 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+
+        // This will pop up in the console the second you press Play.
+        // If you don't see it, you know immediately the script is missing from the scene.
+        Debug.Log($"<color=green>SUCCESS:</color> {gameObject.name} has entered the chat.");
     }
 
     void CheckProgress()
