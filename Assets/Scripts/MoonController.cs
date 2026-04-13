@@ -18,6 +18,9 @@ public class MoonController : MonoBehaviour
     [SerializeField] private float shakeHeight;
     private bool hasTriggeredShake = false;
 
+    // Inside MoonController or MoonPhysics
+    public ParticleSystem airResistanceFX;
+
 
     // Start is called before the first frame update
     void Start()
@@ -95,6 +98,11 @@ public class MoonController : MonoBehaviour
         // TRACKER: This tells us the event successfully reached the Moon.
         // It also prints the current values so you can see if 0.1 is "enough".
         Debug.Log($"<color=cyan>Moon Resist:</color> Event Received! New Mass: {rb.mass} | New Drag: {rb.drag}");
+
+        // Increase particle density as resistance grows
+        var emission = airResistanceFX.emission;
+        emission.rateOverTime = rb.drag * 10f;
+
     }
 
     void FreezeMoon()
