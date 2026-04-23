@@ -102,6 +102,14 @@ public class MoonController : MonoBehaviour
         // Increase particle density as resistance grows
         var emission = airResistanceFX.emission;
         emission.rateOverTime = rb.drag * 10f;
+        var main = airResistanceFX.main;
+
+
+
+        // Scale the size and rate based on how fast the moon is plummeting
+        float speed = rb.velocity.magnitude;
+        main.startSize = speed * 0.5f; // Faster = Bigger flames
+        emission.rateOverTime = speed * 5f; // Faster = More fire
 
     }
 
