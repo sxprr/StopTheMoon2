@@ -140,16 +140,26 @@ public class MenuFunctionality : MonoBehaviour
         }
     }
 
+    //co routine for playing transition, then loading level
     IEnumerator LoadLevel(int levelIndex)
     {
-        // transition (Animator.transition)
+        CanvasGroup canvasGroup = transition.GetComponent<CanvasGroup>();
+
+        // 1. Block clicks so the player can't spam the "Play" button during the fade
+        if (canvasGroup != null) canvasGroup.blocksRaycasts = true;
+
         transition.SetTrigger("Start");
 
+        // Wait for the animation to cover the screen
         yield return new WaitForSeconds(SceneTransitionTime);
 
         SceneManager.LoadScene(levelIndex);
 
-        Debug.Log("The scene that is currently indexed by: " + levelIndex + " has been loaded");
+        // 2. Optional: Trigger a "Fade In" animation here if you have one
+        // transition.SetTrigger("End");
+
+        // 3. Make the UI a "ghost" again so the new scene is interactive
+        if (canvasGroup != null) canvasGroup.blocksRaycasts = false;
     }
 
     public void LoadMenu()
