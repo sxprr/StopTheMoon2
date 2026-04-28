@@ -12,12 +12,17 @@ public class MenuFunctionality : MonoBehaviour
     private bool isPaused;
     public SoundManager Music;
 
+    public Animator transition;
+    public float SceneTransitionTime = 1f;
+
     public static MenuFunctionality Instance = null;
 
     public static bool isGameOver;
     private void Awake()
     {
         DontDestroyOnLoad(Music);
+
+        DontDestroyOnLoad(this.gameObject);
     }
 
     // Start is called before the first frame update
@@ -123,7 +128,9 @@ public class MenuFunctionality : MonoBehaviour
     public void LoadMainGame()
     {
         Time.timeScale = 1;
-        SceneManager.LoadScene(1);
+
+
+        StartCoroutine(LoadLevel(1));
 
         // Check if the music object actually exists before touching it
         if (Music != null)
@@ -133,6 +140,18 @@ public class MenuFunctionality : MonoBehaviour
         }
     }
 
+    IEnumerator LoadLevel(int levelIndex)
+    {
+        // transition (Animator.transition)
+        transition.SetTrigger("Start");
+
+        yield return new WaitForSeconds(SceneTransitionTime);
+
+        SceneManager.LoadScene(levelIndex);
+
+        Debug.Log("The scene that is currently indexed by: " + levelIndex + " has been loaded");
+    }
+
     public void LoadMenu()
     {
         SceneManager.LoadScene(0);
@@ -140,6 +159,8 @@ public class MenuFunctionality : MonoBehaviour
         Music.GetComponent<AudioSource>().enabled = false;
 
     }
+
+   
 
     // tell the methods to listen .
     private void OnEnable()

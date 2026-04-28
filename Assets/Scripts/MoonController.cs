@@ -108,7 +108,7 @@ public class MoonController : MonoBehaviour
 
         // Scale the size and rate based on how fast the moon is plummeting
         float speed = rb.velocity.magnitude;
-        main.startSize = speed * 0.5f; // Faster = Bigger flames
+        main.startSize = speed * 0.0f; // Faster = Bigger flames
         emission.rateOverTime = speed * 5f; // Faster = More fire
 
     }
