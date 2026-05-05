@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class MenuFunctionality : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class MenuFunctionality : MonoBehaviour
     public GameObject PauseInterface;
     public GameObject GameOverInterface;
     public GameObject VictoryInterface; // New UI for winning!
+
+    public GameObject QTEPanel; // New UI for winning!
     private bool isPaused;
     public SoundManager Music;
 

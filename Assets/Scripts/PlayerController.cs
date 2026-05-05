@@ -8,23 +8,44 @@ public class PlayerController : MonoBehaviour
     float xRotation, yRotation;
     public Transform orientation;
 
+    public KeyCode[] qteSequence = { KeyCode.W, KeyCode.A, KeyCode.S }; // The "Combo"
+    private int currentIndex = 0; // Track progress
+
     void Update()
     {
-        // 1. Handle Camera Look (Its actual job)
         HandleLook();
-
-        // This will show you exactly where the camera's "nose" is pointing
         Debug.DrawRay(transform.position, transform.forward * 5f, Color.blue);
 
-        // 2. Handle Input (Just the trigger)
-        if (Input.GetKeyDown(KeyCode.E))
+        // QTE Sequence Logic
+        if (currentIndex < qteSequence.Length)
         {
-            HandleRay();
-            
+            // Check if the player pressed ANY key this frame
+            if (Input.anyKeyDown)
+            {
+                // Was it the RIGHT key?
+                if (Input.GetKeyDown(qteSequence[currentIndex]))
+                {
+                    currentIndex++;
+                    Debug.Log($"Correct! Step {currentIndex} of {qteSequence.Length}");
+
+                    // Check if sequence is complete
+                    if (currentIndex >= qteSequence.Length)
+                    {
+                        HandleRay(); // Trigger the action
+                        currentIndex = 0; // Reset for next time
+                    }
+                }
+                else
+                {
+                    // Optional: Penalty for wrong key
+                    Debug.Log("Wrong key! Sequence reset.");
+                    currentIndex = 0;
+                }
+            }
         }
     }
 
-    private void HandleLook() { /* Your rotation logic here */
+    private void HandleLook() {
 
         float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensX;
         float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensY;
