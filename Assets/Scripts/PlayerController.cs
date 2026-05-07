@@ -4,44 +4,26 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    // handling player movement
     public float sensX, sensY;
     float xRotation, yRotation;
     public Transform orientation;
 
-    public KeyCode[] qteSequence = { KeyCode.W, KeyCode.A, KeyCode.S }; // The "Combo"
-    private int currentIndex = 0; // Track progress
+    [SerializeField] private QTEManager qteManager; // Connection to the manager
 
     void Update()
     {
+        // 1. Handle Camera Look
         HandleLook();
+
         Debug.DrawRay(transform.position, transform.forward * 5f, Color.blue);
 
-        // QTE Sequence Logic
-        if (currentIndex < qteSequence.Length)
+        // 2. Interaction Trigger
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            // Check if the player pressed ANY key this frame
-            if (Input.anyKeyDown)
-            {
-                // Was it the RIGHT key?
-                if (Input.GetKeyDown(qteSequence[currentIndex]))
-                {
-                    currentIndex++;
-                    Debug.Log($"Correct! Step {currentIndex} of {qteSequence.Length}");
-
-                    // Check if sequence is complete
-                    if (currentIndex >= qteSequence.Length)
-                    {
-                        HandleRay(); // Trigger the action
-                        currentIndex = 0; // Reset for next time
-                    }
-                }
-                else
-                {
-                    // Optional: Penalty for wrong key
-                    Debug.Log("Wrong key! Sequence reset.");
-                    currentIndex = 0;
-                }
-            }
+            // Instead of doing logic here, we just tell the manager to go!
+            qteManager.StartQTE();
+            HandleRay();
         }
     }
 

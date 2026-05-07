@@ -47,5 +47,6 @@ public class StaminaManager : MonoBehaviour
 
         Debug.Log($"<color=orange>Stamina Logic:</color> Current: {currentStamina} | Percent: {percent}");
     }
+    
 
 }
