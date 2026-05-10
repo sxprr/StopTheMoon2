@@ -262,7 +262,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1364895053714333970, guid: d0d730fa96965d149a41435d7cac740b, type: 3}
   m_PrefabInstance: {fileID: 5112441688991733886}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 5112441688991733887}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2dbebe7e079602142a06ac4f9568da85, type: 3}
@@ -370,6 +370,7 @@ GameObject:
   - component: {fileID: 206433193}
   - component: {fileID: 206433195}
   - component: {fileID: 206433194}
+  - component: {fileID: 206433196}
   m_Layer: 5
   m_Name: QTE Panel
   m_TagString: Untagged
@@ -437,6 +438,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 206433192}
   m_CullTransparentMesh: 1
+--- !u!114 &206433196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 206433192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6407f7205a366c4c9aae30c86da2993, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  qteUIElements:
+  - {fileID: 547975729}
+  - {fileID: 1703495199}
+  - {fileID: 824311203}
+  successColor: {r: 0, g: 1, b: 0, a: 1}
+  failColor: {r: 1, g: 0, b: 0, a: 1}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &262454870
 GameObject:
   m_ObjectHideFlags: 0
@@ -3170,7 +3190,7 @@ MonoBehaviour:
   sensX: 120
   sensY: 120
   orientation: {fileID: 488461789}
-  qteSequence: 770000006100000073000000
+  qteManager: {fileID: 5112441688991733888}
 --- !u!1 &1062947442
 GameObject:
   m_ObjectHideFlags: 0
@@ -5586,8 +5606,30 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6330877393063118973, guid: d0d730fa96965d149a41435d7cac740b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5112441688991733888}
   m_SourcePrefab: {fileID: 100100000, guid: d0d730fa96965d149a41435d7cac740b, type: 3}
+--- !u!1 &5112441688991733887 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6330877393063118973, guid: d0d730fa96965d149a41435d7cac740b, type: 3}
+  m_PrefabInstance: {fileID: 5112441688991733886}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5112441688991733888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5112441688991733887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c3748d894846e64185e23885fec0e3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  qteSequence: 770000006100000073000000
+  qteUI: {fileID: 206433196}
 --- !u!1001 &5959527343498963757
 PrefabInstance:
   m_ObjectHideFlags: 0
