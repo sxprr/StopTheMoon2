@@ -8,7 +8,7 @@ public class MoonController : MonoBehaviour
     // player reference
     public GameObject Player;
 
-    //moon event reference (deprecated)
+    //moon event reference (DEPRECATED references, PLEASE IGNORE FOR NOW.)
     public GameManager game;
     public UnityEvent playerApproach;
 
@@ -39,6 +39,8 @@ public class MoonController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //TODO: Wrap the Cinemachine shake logic in a function.
+
         // 1. Calculate the bottom of the moon (Scale is 100, so radius is 50)
         float moonRadius = transform.lossyScale.y / 2f;
         Vector3 raystart = transform.position + (Vector3.down * moonRadius);
@@ -61,20 +63,7 @@ public class MoonController : MonoBehaviour
         }
     }
 
-    /*
-    // When the moon hits player. (deprecated)
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            Debug.Log("Moon collides with player and is sent back to menu");
-            game.OnGameStateChanged.Invoke();        
-
-        }
-    }
-    */
-
-    // events and listeners
+    // events and listeners for EVENT BUS
     private void OnEnable()
     {
         // Start listening for the "E" press

@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
         HandleLook();
 
         Debug.DrawRay(transform.position, transform.forward * 5f, Color.blue);
-
+        // Instead of doing logic here, we just tell the manager to go!
         // 2. Interaction Trigger
         if (Input.GetKeyDown(KeyCode.E))
         {
