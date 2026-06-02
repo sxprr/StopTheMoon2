@@ -10,6 +10,11 @@ public class PlayerController : MonoBehaviour
     public Transform orientation;
 
     [SerializeField] private QTEManager qteManager; // Connection to the manager
+    [SerializeField] private Transform moonTransform;
+
+    public float qteTriggerDistance = 50f;
+    private bool qteTriggered = false;
+
 
     void Update()
     {
@@ -19,11 +24,17 @@ public class PlayerController : MonoBehaviour
         Debug.DrawRay(transform.position, transform.forward * 5f, Color.blue);
         // Instead of doing logic here, we just tell the manager to go!
         // 2. Interaction Trigger
-        if (Input.GetKeyDown(KeyCode.E))
+        if (!qteTriggered && moonTransform != null)
         {
-            // Instead of doing logic here, we just tell the manager to go!
-            qteManager.StartQTE();
-            HandleRay();
+            float distanceToMoon = Vector3.Distance(transform.position, moonTransform.position);
+
+            if(distanceToMoon <= qteTriggerDistance)
+            {
+                // Instead of doing logic here, we just tell the manager to go!
+                qteManager.StartQTE();
+                HandleRay();
+
+            }
         }
     }
 

@@ -22,9 +22,25 @@ public class QTEManager : MonoBehaviour
     {
         if (!isQTEActive) return;
 
+        // TODO: I WANT ALL KEY PRESSES TO SHOW UP ON CONSOLE
         if (Input.anyKeyDown)
         {
-            if (Input.GetKeyDown(qteSequence[currentIndex]))
+            // 1. Log what was actually pressed vs what the sequence expected
+            string pressedKey = "Unknown/Mouse";
+            foreach (KeyCode k in System.Enum.GetValues(typeof(KeyCode)))
+            {
+                if (Input.GetKeyDown(k))
+                {
+                    pressedKey = k.ToString();
+                    break;
+                }
+            }
+
+            KeyCode expectedKey = qteSequence[currentIndex];
+            Debug.Log($"<color=cyan>[QTE INPUT]</color> Pressed: <b>{pressedKey}</b> | Expected: <b>{expectedKey}</b> (Index: {currentIndex})");
+
+            // Checking the qte array positions....
+            if (Input.GetKeyDown(expectedKey))
             {
                 qteUI.UpdateStep(currentIndex, true);
                 currentIndex++;
@@ -36,6 +52,9 @@ public class QTEManager : MonoBehaviour
             }
             else
             {
+                // 2. Log exactly why they failed (wrong key vs missing the window)
+                Debug.Log($"<color=red>[QTE FAILED]</color> Input mismatch at index {currentIndex}. Striking out.");
+
                 qteUI.UpdateStep(currentIndex, false);
                 FinishQTE(false);
             }
