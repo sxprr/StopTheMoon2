@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform moonTransform;
 
     public float qteTriggerDistance = 50f;
-    private bool qteTriggered = false;
+    private bool qteTriggered = true;
 
 
     void Update()
@@ -21,16 +21,33 @@ public class PlayerController : MonoBehaviour
         // 1. Handle Camera Look
         HandleLook();
 
+        Debug.Log("Trigger distance is " + qteTriggerDistance + ", and the boolean is now set to " + qteTriggered);
+        Debug.Log("Moon's position: " + moonTransform);
+
         Debug.DrawRay(transform.position, transform.forward * 5f, Color.blue);
         // Instead of doing logic here, we just tell the manager to go!
         // 2. Interaction Trigger
+      
+        // activate QTE when the moon (it's transform) reaches a certain distance
+        // i would also like to ouput the moon's distance
+
+        //if qte triggered is false AND the moontransform isn't null:
         if (!qteTriggered && moonTransform != null)
         {
             float distanceToMoon = Vector3.Distance(transform.position, moonTransform.position);
 
-            if(distanceToMoon <= qteTriggerDistance)
+            Debug.Log("Moon's current distance is : " + distanceToMoon);
+
+            if (distanceToMoon <= qteTriggerDistance)
             {
-                // Instead of doing logic here, we just tell the manager to go!
+                // 1. Log the values BEFORE changing the state
+                Debug.Log($"<color=yellow>QTE TRIGGER CRITERIA MET!</color> Current Distance: {distanceToMoon} <= Target Distance: {qteTriggerDistance}. Initial qteTriggered state: {qteTriggered}");
+
+                qteTriggered = true; // Lock the gate
+
+                // 2. Log the values AFTER changing the state
+                Debug.Log($"<color=orange>GATE LOCKED.</color> qteTriggered is now: {qteTriggered}. QTE System starting.");
+
                 qteManager.StartQTE();
                 HandleRay();
 

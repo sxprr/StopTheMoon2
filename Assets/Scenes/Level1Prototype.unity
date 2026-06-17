@@ -3225,7 +3225,7 @@ MonoBehaviour:
   orientation: {fileID: 488461789}
   qteManager: {fileID: 5112441688991733888}
   moonTransform: {fileID: 2072755330}
-  qteTriggerDistance: 2
+  qteTriggerDistance: 0
 --- !u!1 &971787761
 GameObject:
   m_ObjectHideFlags: 0
