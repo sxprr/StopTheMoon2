@@ -12,8 +12,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private QTEManager qteManager; // Connection to the manager
     [SerializeField] private Transform moonTransform;
 
-    public float qteTriggerDistance = 50f;
-    private bool qteTriggered = true;
+    public float qteTriggerDistance = 160f;
+    private bool qteTriggered = false;
 
 
     void Update()
@@ -22,7 +22,10 @@ public class PlayerController : MonoBehaviour
         HandleLook();
 
         Debug.Log("Trigger distance is " + qteTriggerDistance + ", and the boolean is now set to " + qteTriggered);
-        Debug.Log("Moon's position: " + moonTransform);
+
+        float distanceToMoon1 = Vector3.Distance(transform.position, moonTransform.position);
+
+        Debug.Log($"<color=pink>Moon's current distance is :</color> " + distanceToMoon1);
 
         Debug.DrawRay(transform.position, transform.forward * 5f, Color.blue);
         // Instead of doing logic here, we just tell the manager to go!
@@ -32,12 +35,14 @@ public class PlayerController : MonoBehaviour
         // i would also like to ouput the moon's distance
 
         //if qte triggered is false AND the moontransform isn't null:
+        //THIS ISN'T FIRING
         if (!qteTriggered && moonTransform != null)
         {
             float distanceToMoon = Vector3.Distance(transform.position, moonTransform.position);
 
-            Debug.Log("Moon's current distance is : " + distanceToMoon);
+            Debug.Log($"[Distance Tracker] Moon is {distanceToMoon} units away. Target threshold: {qteTriggerDistance}");
 
+            // NOT FIRING DESPITE TWEAKING DISTANCE AAAAAAAAAA
             if (distanceToMoon <= qteTriggerDistance)
             {
                 // 1. Log the values BEFORE changing the state
