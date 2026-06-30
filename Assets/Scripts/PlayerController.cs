@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     private bool qteTriggered = false;
 
 
+
     void Update()
     {
         // 1. Handle Camera Look
@@ -32,10 +33,7 @@ public class PlayerController : MonoBehaviour
         // 2. Interaction Trigger
       
         // activate QTE when the moon (it's transform) reaches a certain distance
-        // i would also like to ouput the moon's distance
 
-        //if qte triggered is false AND the moontransform isn't null:
-        //THIS ISN'T FIRING
         if (!qteTriggered && moonTransform != null)
         {
             float distanceToMoon = Vector3.Distance(transform.position, moonTransform.position);

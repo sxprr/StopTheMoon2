@@ -6,21 +6,26 @@ using TMPro;
 
 public class MenuFunctionality : MonoBehaviour
 {
+    [Header("UI Panels")]
     public GameObject MainMenu;
     public GameObject PauseInterface;
     public GameObject GameOverInterface;
     public GameObject VictoryInterface; // New UI for winning!
-
     public GameObject QTEPanel; // New UI for winning!
-    private bool isPaused;
+
+    [Header("Music")]
     public SoundManager Music;
 
+    [Header("Animator")]
     public Animator transition;
-    public float SceneTransitionTime = 1f;
 
     public static MenuFunctionality Instance = null;
 
+    [Header("Parameters")]
+    public float SceneTransitionTime = 1f;
+    private bool isPaused;
     public static bool isGameOver;
+    
     private void Awake()
     {
         DontDestroyOnLoad(Music);
@@ -151,10 +156,20 @@ public class MenuFunctionality : MonoBehaviour
         // 1. Block clicks so the player can't spam the "Play" button during the fade
         if (canvasGroup != null) canvasGroup.blocksRaycasts = true;
 
-        transition.SetTrigger("Start");
+        if(transition != null)
+        {
+            transition.SetTrigger("Start");
+        }
+
 
         // Wait for the animation to cover the screen
         yield return new WaitForSeconds(SceneTransitionTime);
+
+        // 3. HIDE the Main Menu UI elements while the screen is black
+        if (MainMenu != null)
+        {
+            MainMenu.SetActive(false);
+        }
 
         SceneManager.LoadScene(levelIndex);
 
