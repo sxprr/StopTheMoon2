@@ -22,6 +22,13 @@ public class QTEManager : MonoBehaviour
     {
         if (!isQTEActive) return;
 
+        //please Ignore the frame if left, right or middle click was pressed.
+        if(Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(2))
+        {
+            return;
+        }
+
+
         // TODO: I WANT ALL KEY PRESSES TO SHOW UP ON CONSOLE
         if (Input.anyKeyDown)
         {
