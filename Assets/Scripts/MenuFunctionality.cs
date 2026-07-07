@@ -45,6 +45,8 @@ public class MenuFunctionality : MonoBehaviour
         isPaused = false;
         Music.GetComponent<AudioSource>().enabled = true;
         //DontDestroyOnLoad(Music);
+
+        
     }
 
     // Update is called once per frame
@@ -151,6 +153,7 @@ public class MenuFunctionality : MonoBehaviour
     //co routine for playing transition, then loading level
     IEnumerator LoadLevel(int levelIndex)
     {
+      
         CanvasGroup canvasGroup = transition.GetComponent<CanvasGroup>();
 
         // 1. Block clicks so the player can't spam the "Play" button during the fade
@@ -170,7 +173,7 @@ public class MenuFunctionality : MonoBehaviour
         {
             MainMenu.SetActive(false);
         }
-
+        
         SceneManager.LoadScene(levelIndex);
 
         // 2. Optional: Trigger a "Fade In" animation here if you have one

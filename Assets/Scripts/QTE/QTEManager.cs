@@ -28,8 +28,7 @@ public class QTEManager : MonoBehaviour
             return;
         }
 
-
-        // TODO: I WANT ALL KEY PRESSES TO SHOW UP ON CONSOLE
+        // 
         if (Input.anyKeyDown)
         {
             // 1. Log what was actually pressed vs what the sequence expected
