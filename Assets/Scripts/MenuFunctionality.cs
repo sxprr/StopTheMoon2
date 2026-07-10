@@ -82,6 +82,7 @@ public class MenuFunctionality : MonoBehaviour
     {
         Time.timeScale = 0;
         MainMenu.SetActive(false);
+        QTEPanel.SetActive(false);
         isPaused = true;
         PauseInterface.SetActive(true);
         Cursor.visible = true;
@@ -95,6 +96,7 @@ public class MenuFunctionality : MonoBehaviour
         // stop time and show results
         Time.timeScale = 0;
         GameOverInterface.SetActive(true);
+        QTEPanel.SetActive(false);
 
         // unlock the cursor for the player.
 
@@ -123,6 +125,7 @@ public class MenuFunctionality : MonoBehaviour
     {
         Time.timeScale = 1;
         MainMenu.SetActive(true);
+        QTEPanel.SetActive(true);
         isPaused = false;
         PauseInterface.SetActive(false); ;
         Cursor.visible = false;
@@ -198,6 +201,7 @@ public class MenuFunctionality : MonoBehaviour
     {
         GameEvents.OnVictoryAchieved += DisplayVictory;
         GameEvents.OnPlayerImpact += DisplayGameOver;
+       
     }
    
 

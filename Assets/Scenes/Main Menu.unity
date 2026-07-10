@@ -414,9 +414,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MainMenu: {fileID: 1155909157}
   PauseInterface: {fileID: 1155909157}
-  GameOverInterface: {fileID: 0}
-  VictoryInterface: {fileID: 0}
-  QTEPanel: {fileID: 0}
+  GameOverInterface: {fileID: 1663416733445307175, guid: 2d6796622a128a549a3ea1e924fce393, type: 3}
+  VictoryInterface: {fileID: 4009242168476682862, guid: 36331fb844981164f8f8583e7df6e4b3, type: 3}
+  QTEPanel: {fileID: 2120161905718451735, guid: 693765bcc10cbc04e81a6a4790062f24, type: 3}
   Music: {fileID: 805891025}
   transition: {fileID: 505087304}
   SceneTransitionTime: 1
