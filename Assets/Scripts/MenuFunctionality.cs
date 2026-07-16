@@ -6,6 +6,12 @@ using TMPro;
 
 public class MenuFunctionality : MonoBehaviour
 {
+    // re-assign the local level's Game Over UI the moment a new scene finishes loading.
+
+    [Header("Persistent Settings")]
+    [SerializeField] private string gameOverObjectName = "GameOverInterface"; // The exact name of your UI object in Level One
+    private GameObject localGameOverInterface;
+
     [Header("UI Panels")]
     public GameObject MainMenu;
     public GameObject PauseInterface;
@@ -69,6 +75,7 @@ public class MenuFunctionality : MonoBehaviour
             if (isPaused)
             {
                 ResumeGame(); // Assuming you have a Resume function
+                
             }
             else
             {
@@ -126,7 +133,7 @@ public class MenuFunctionality : MonoBehaviour
         Time.timeScale = 1;
         MainMenu.SetActive(true);
         QTEPanel.SetActive(true);
-        isPaused = false;
+        isPaused = true;
         PauseInterface.SetActive(false); ;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -175,6 +182,7 @@ public class MenuFunctionality : MonoBehaviour
         if (MainMenu != null)
         {
             MainMenu.SetActive(false);
+            GameOverInterface.SetActive(false);
         }
         
         SceneManager.LoadScene(levelIndex);
@@ -194,14 +202,40 @@ public class MenuFunctionality : MonoBehaviour
 
     }
 
-   
+    // This runs automatically right after Level One finishes loading
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // Hunt for the Game Over screen inside the newly loaded scene
+        localGameOverInterface = GameObject.Find(gameOverObjectName);
+
+        if (localGameOverInterface != null)
+        {
+            Debug.Log($"<color=green>SUCCESS:</color> Found and linked {gameOverObjectName} in scene: {scene.name}");
+            localGameOverInterface.SetActive(false); // Make sure it starts hidden
+        }
+    }
+
+    // Call this method when the player flunks the QTE or dies
+    public void TriggerGameOver()
+    {
+        if (localGameOverInterface != null)
+        {
+            localGameOverInterface.SetActive(true);
+        }
+        else
+        {
+            Debug.LogError($"Cannot display Game Over! No GameObject named '{gameOverObjectName}' found in this scene.");
+        }
+    }
+
 
     // tell the methods to listen .
     private void OnEnable()
     {
         GameEvents.OnVictoryAchieved += DisplayVictory;
         GameEvents.OnPlayerImpact += DisplayGameOver;
-       
+        SceneManager.sceneLoaded += OnSceneLoaded;
+
     }
    
 
@@ -209,6 +243,7 @@ public class MenuFunctionality : MonoBehaviour
     {
         GameEvents.OnVictoryAchieved -= DisplayVictory;
         GameEvents.OnPlayerImpact -= DisplayGameOver;
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
     
 

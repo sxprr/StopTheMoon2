@@ -412,6 +412,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d817002d05f79f4eb7c70c71e658ab6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameOverObjectName: GameOverInterface
   MainMenu: {fileID: 1155909157}
   PauseInterface: {fileID: 1155909157}
   GameOverInterface: {fileID: 1663416733445307175, guid: 2d6796622a128a549a3ea1e924fce393, type: 3}
@@ -614,6 +615,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39c5e2cbcc5296445ab502f045037d60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!82 &805891027 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 2952121376643662501, guid: 640d55de9d6afa94781a558c30eabf7b, type: 3}
+  m_PrefabInstance: {fileID: 1211244007}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &805891028 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 424875754084069, guid: 640d55de9d6afa94781a558c30eabf7b, type: 3}
+  m_PrefabInstance: {fileID: 1211244007}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &806495751 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 340060454734364005, guid: 6e9fa3a77f8718242b38574f0219d530, type: 3}
@@ -939,11 +950,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d817002d05f79f4eb7c70c71e658ab6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameOverObjectName: GameOverInterface
   MainMenu: {fileID: 1155909157}
   PauseInterface: {fileID: 7683394984034243075, guid: 6c77025b376b24c4aa2367a8fe38cd09, type: 3}
   GameOverInterface: {fileID: 1663416733445307175, guid: 2d6796622a128a549a3ea1e924fce393, type: 3}
-  VictoryInterface: {fileID: 0}
-  QTEPanel: {fileID: 0}
+  VictoryInterface: {fileID: 4009242168476682862, guid: 36331fb844981164f8f8583e7df6e4b3, type: 3}
+  QTEPanel: {fileID: 4219066556226750770, guid: b6b4e5cbbef5d494a8eeb45f9e899be8, type: 3}
   Music: {fileID: 805891025}
   transition: {fileID: 505087304}
   SceneTransitionTime: 1
@@ -999,6 +1011,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2952121376643662501, guid: 640d55de9d6afa94781a558c30eabf7b, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3107953829475729604, guid: 640d55de9d6afa94781a558c30eabf7b, type: 3}
+      propertyPath: MusicSource
+      value: 
+      objectReference: {fileID: 805891028}
+    - target: {fileID: 3107953829475729604, guid: 640d55de9d6afa94781a558c30eabf7b, type: 3}
+      propertyPath: EffectsSource
+      value: 
+      objectReference: {fileID: 805891027}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
