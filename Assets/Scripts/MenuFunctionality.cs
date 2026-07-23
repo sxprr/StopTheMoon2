@@ -63,6 +63,9 @@ public class MenuFunctionality : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            MainMenu.SetActive(false);
+            Debug.Log($"<color=yellow>The Main Menu is turned OFF.</color>");
+
             // 1. Safety Check: If we are in the Main Menu, we don't want to pause.
             // Using buildIndex is fine, but check the .buildIndex property specifically.
             if (SceneManager.GetActiveScene().buildIndex == 0)
@@ -75,11 +78,12 @@ public class MenuFunctionality : MonoBehaviour
             if (isPaused)
             {
                 ResumeGame(); // Assuming you have a Resume function
-                
+             
             }
             else
             {
                 PauseGame();
+                Debug.Log("Game Paused");
             }
         }
 
@@ -87,6 +91,8 @@ public class MenuFunctionality : MonoBehaviour
 
     public void PauseGame()
     {
+        //WHEN WE PAUSE THE GAME, TURN OFF THE FUCKING MAIN MENU SCREEN. SO WHY IS IT STILL THEEREE AAAAAAAAAHHH
+
         Time.timeScale = 0;
         MainMenu.SetActive(false);
         QTEPanel.SetActive(false);
@@ -163,7 +169,7 @@ public class MenuFunctionality : MonoBehaviour
     //co routine for playing transition, then loading level
     IEnumerator LoadLevel(int levelIndex)
     {
-      
+        MainMenu.SetActive(false);
         CanvasGroup canvasGroup = transition.GetComponent<CanvasGroup>();
 
         // 1. Block clicks so the player can't spam the "Play" button during the fade
@@ -181,8 +187,10 @@ public class MenuFunctionality : MonoBehaviour
         // 3. HIDE the Main Menu UI elements while the screen is black
         if (MainMenu != null)
         {
-            MainMenu.SetActive(false);
             GameOverInterface.SetActive(false);
+            QTEPanel.SetActive(true);
+            MainMenu.SetActive(false);
+
         }
         
         SceneManager.LoadScene(levelIndex);
