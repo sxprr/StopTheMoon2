@@ -683,7 +683,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameOverObjectName: GameOverInterface
-  MainMenu: {fileID: 738714426}
+  MainMenu: {fileID: 7625031457848766153, guid: 8f5e6229f771bfe419a0e2943d723f2a, type: 3}
   PauseInterface: {fileID: 634021211}
   GameOverInterface: {fileID: 262454870}
   VictoryInterface: {fileID: 67039919}
@@ -716,11 +716,6 @@ Animator:
 Light:
   m_CorrespondingSourceObject: {fileID: 8510363629239050798, guid: 403d6e3f5dc08ff41b89debc6c9bbcc7, type: 3}
   m_PrefabInstance: {fileID: 6952142610322830196}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &738714426 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4219066556226750770, guid: b6b4e5cbbef5d494a8eeb45f9e899be8, type: 3}
-  m_PrefabInstance: {fileID: 2051163356231072345}
   m_PrefabAsset: {fileID: 0}
 --- !u!224 &738714427 stripped
 RectTransform:

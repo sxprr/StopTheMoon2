@@ -63,11 +63,15 @@ public class MenuFunctionality : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            MainMenu.SetActive(false);
+            /*I implemented a temporary fix for Main Menu UI somewhat persisting.
+             * I will sort out a proper fix later.
+             */
             Debug.Log($"<color=yellow>The Main Menu is turned OFF.</color>");
 
-            // 1. Safety Check: If we are in the Main Menu, we don't want to pause.
-            // Using buildIndex is fine, but check the .buildIndex property specifically.
+            /* 1. Safety Check: If we are in the Main Menu, we don't want to pause.
+             * Using buildIndex is fine, but check the .buildIndex property specifically.
+             */
+
             if (SceneManager.GetActiveScene().buildIndex == 0)
             {
                 Debug.Log("In Main Menu: Esc disabled.");
@@ -75,14 +79,17 @@ public class MenuFunctionality : MonoBehaviour
             }
 
             // 2. Logic Toggle: If we aren't in the menu, toggle the pause state.
+            // TODO: The main doesn't toggle after two "esc" presses.
+
+            isPaused = !isPaused;
+            
             if (isPaused)
             {
-                ResumeGame(); // Assuming you have a Resume function
-             
+                PauseGame();                       
             }
             else
             {
-                PauseGame();
+                ResumeGame();
                 Debug.Log("Game Paused");
             }
         }

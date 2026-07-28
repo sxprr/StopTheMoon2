@@ -796,6 +796,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MainMenuParent
       objectReference: {fileID: 0}
+    - target: {fileID: 7625031457848766153, guid: 8f5e6229f771bfe419a0e2943d723f2a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7847240188929940614, guid: 8f5e6229f771bfe419a0e2943d723f2a, type: 3}
       propertyPath: Music
       value: 
