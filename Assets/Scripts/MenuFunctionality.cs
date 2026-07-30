@@ -98,15 +98,36 @@ public class MenuFunctionality : MonoBehaviour
 
     public void PauseGame()
     {
-        //WHEN WE PAUSE THE GAME, TURN OFF THE FUCKING MAIN MENU SCREEN. SO WHY IS IT STILL THEEREE AAAAAAAAAHHH
-
         Time.timeScale = 0;
-        MainMenu.SetActive(false);
-        QTEPanel.SetActive(false);
-        isPaused = true;
-        PauseInterface.SetActive(true);
+        isPaused = true; // Correctly sets paused state
+
+        // UI Management
+        if (MainMenu != null) MainMenu.SetActive(false);
+        if (QTEPanel != null) QTEPanel.SetActive(false); // Hide active QTE prompts while paused
+        if (PauseInterface != null) PauseInterface.SetActive(true); // Show pause menu
+
+        // Cursor Management
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+
+        Debug.Log("<color=yellow>[Pause]</color> Game simulation frozen.");
+    }
+
+    public void ResumeGame()
+    {
+        Time.timeScale = 1;
+        isPaused = false; // FIX: Changed from true to false!
+
+        // UI Management
+        if (MainMenu != null) MainMenu.SetActive(false); // KEEP FALSE: You don't want the main menu panel in the middle of gameplay
+        if (QTEPanel != null) QTEPanel.SetActive(true);  // Bring back QTE prompts if one was active
+        if (PauseInterface != null) PauseInterface.SetActive(false); // Hide pause menu
+
+        // Cursor Management
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+
+        Debug.Log("<color=green>[Resume]</color> Game simulation restored.");
     }
 
     public void DisplayGameOver()
@@ -141,16 +162,6 @@ public class MenuFunctionality : MonoBehaviour
 
     }
 
-    public void ResumeGame()
-    {
-        Time.timeScale = 1;
-        MainMenu.SetActive(true);
-        QTEPanel.SetActive(true);
-        isPaused = true;
-        PauseInterface.SetActive(false); ;
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
-    }
 
     public void Quit()
     {
