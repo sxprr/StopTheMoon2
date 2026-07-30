@@ -901,16 +901,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2327578225493547817, guid: 6e9fa3a77f8718242b38574f0219d530, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3225622799656634411, guid: 6e9fa3a77f8718242b38574f0219d530, type: 3}
       propertyPath: m_Name
       value: FadeImage
       objectReference: {fileID: 0}
     - target: {fileID: 3570119963848966750, guid: 6e9fa3a77f8718242b38574f0219d530, type: 3}
       propertyPath: m_Alpha
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3570119963848966750, guid: 6e9fa3a77f8718242b38574f0219d530, type: 3}
-      propertyPath: m_BlocksRaycasts
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
