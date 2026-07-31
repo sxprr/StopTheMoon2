@@ -28,7 +28,7 @@ public class MenuFunctionality : MonoBehaviour
     public static MenuFunctionality Instance = null;
 
     [Header("Parameters")]
-    public float SceneTransitionTime = 1f;
+    public float SceneTransitionTime = 1f; // Animation float that I can adjust
     private bool isPaused;
     public static bool isGameOver;
     
@@ -193,11 +193,10 @@ public class MenuFunctionality : MonoBehaviour
         // 1. Block clicks so the player can't spam the "Play" button during the fade
         if (canvasGroup != null) canvasGroup.blocksRaycasts = true;
 
-        if(transition != null)
+        if (transition != null)
         {
             transition.SetTrigger("Start");
         }
-
 
         // Wait for the animation to cover the screen
         yield return new WaitForSeconds(SceneTransitionTime);
@@ -206,17 +205,34 @@ public class MenuFunctionality : MonoBehaviour
         if (MainMenu != null)
         {
             GameOverInterface.SetActive(false);
-            QTEPanel.SetActive(true);
+            QTEPanel.SetActive(false); // Keep this FALSE until the level is fully loaded
             MainMenu.SetActive(false);
-
         }
-        
+
+        // Load the actual gameplay scene
         SceneManager.LoadScene(levelIndex);
 
-        // 2. Optional: Trigger a "Fade In" animation here if you have one
-        // transition.SetTrigger("End");
+        // --- NEW/RESTORED LOGIC FOR THE NEW SCENE ---
 
-        // 3. Make the UI a "ghost" again so the new scene is interactive
+        // 4. Tell the persistent animator to fade back to clear/Idle
+        if (transition != null)
+        {
+            transition.SetTrigger("End");
+        }
+
+        // 5. Explicitly ensure your pause screen starts completely turned off in the new scene
+        if (PauseInterface != null)
+        {
+            PauseInterface.SetActive(false);
+        }
+
+        // 6. Now that the level is loaded, safely activate the QTE panel mechanics
+        if (QTEPanel != null)
+        {
+            QTEPanel.SetActive(true);
+        }
+
+        // 7. Make the UI interactive again
         if (canvasGroup != null) canvasGroup.blocksRaycasts = false;
     }
 
