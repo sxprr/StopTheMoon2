@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
         {
             float distanceToMoon = Vector3.Distance(transform.position, moonTransform.position);
 
-            Debug.Log($"[Distance Tracker] Moon is {distanceToMoon} units away. Target threshold: {qteTriggerDistance}");
+            //Debug.Log($"[Distance Tracker] Moon is {distanceToMoon} units away. Target threshold: {qteTriggerDistance}");
 
             // NOT FIRING DESPITE TWEAKING DISTANCE AAAAAAAAAA
             if (distanceToMoon <= qteTriggerDistance)

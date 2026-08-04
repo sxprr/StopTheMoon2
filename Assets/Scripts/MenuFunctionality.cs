@@ -198,6 +198,7 @@ public class MenuFunctionality : MonoBehaviour
             transition.SetTrigger("Start");
         }
 
+
         // Wait for the animation to cover the screen
         yield return new WaitForSeconds(SceneTransitionTime);
 
@@ -229,6 +230,7 @@ public class MenuFunctionality : MonoBehaviour
         // 6. Now that the level is loaded, safely activate the QTE panel mechanics
         if (QTEPanel != null)
         {
+            // Level Loaded, QTE Panel has been activated.
             QTEPanel.SetActive(true);
         }
 
