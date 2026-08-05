@@ -167,6 +167,7 @@ public class MenuFunctionality : MonoBehaviour
     {
         Application.Quit();
         Debug.Log("Application has quit");
+        LogHandler.Log("The Application has come to an end.");
     }
 
     public void LoadMainGame()
@@ -196,11 +197,13 @@ public class MenuFunctionality : MonoBehaviour
         if (transition != null)
         {
             transition.SetTrigger("Start");
+            transition.Update(-1f);
         }
 
 
         // Wait for the animation to cover the screen
         yield return new WaitForSeconds(SceneTransitionTime);
+        Debug.Log("<color=cyan>Co-routine for animation has been triggered</color>");
 
         // 3. HIDE the Main Menu UI elements while the screen is black
         if (MainMenu != null)
@@ -218,7 +221,9 @@ public class MenuFunctionality : MonoBehaviour
         // 4. Tell the persistent animator to fade back to clear/Idle
         if (transition != null)
         {
+            LogHandler.Log("The animation trigger has been set to 'End'");
             transition.SetTrigger("End");
+            transition.Update(0f);
         }
 
         // 5. Explicitly ensure your pause screen starts completely turned off in the new scene
@@ -232,10 +237,12 @@ public class MenuFunctionality : MonoBehaviour
         {
             // Level Loaded, QTE Panel has been activated.
             QTEPanel.SetActive(true);
+            Debug.Log("<color=brown>Level Loaded, QTE Panel has been activated</color>");
         }
 
         // 7. Make the UI interactive again
         if (canvasGroup != null) canvasGroup.blocksRaycasts = false;
+        Debug.Log("<color=brown>UI should now be interactive again</color>");
     }
 
     public void LoadMenu()
@@ -243,6 +250,8 @@ public class MenuFunctionality : MonoBehaviour
         SceneManager.LoadScene(0);
         Time.timeScale = 1;
         Music.GetComponent<AudioSource>().enabled = false;
+
+        Debug.Log("<color=maroon>Menu Scene has now been loaded</color>");
 
     }
 
