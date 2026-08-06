@@ -55,7 +55,7 @@ public class MoonController : MonoBehaviour
         {
             if (!hasTriggeredShake && hit.collider.CompareTag("Environment"))
             {
-                Debug.Log("DETECTION: The moon surface is " + hit.distance + " units from the " + hit.collider.name);
+                LogHandler.Log("DETECTION: The moon surface is " + hit.distance + " units from the " + hit.collider.name);
 
                 playerApproach.Invoke();
                 hasTriggeredShake = true;

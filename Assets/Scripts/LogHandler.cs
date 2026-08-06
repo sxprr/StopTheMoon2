@@ -13,6 +13,7 @@ public static class LogHandler
         return ColorUtility.ToHtmlStringRGB(color);
     }
 
+    // Overrides any normal debug.log with "LogHandler.Log" (switch 'debug' with 'LogHandler')
     public static void Log(object message, [CallerFilePath] string file = "")
     {
         // GET THE NAME OF THE CLASS THAT THE LOG IS BEING CALLED FROM.
@@ -22,6 +23,6 @@ public static class LogHandler
         var color = GetColor(className);
 
         //add this custom color coded tag to any debug log
-        Debug.Log($"<color=#{color}><b>)[{className}]</b></color> {message}");
+        Debug.Log($"<color=#{color}><b>[{className}]</b></color> {message}");
     }
 }

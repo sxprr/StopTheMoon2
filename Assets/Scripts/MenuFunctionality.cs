@@ -46,7 +46,7 @@ public class MenuFunctionality : MonoBehaviour
         MenuFunctionality.isGameOver = false;
 
         // Optional: Log it so you can see it's working in the console
-        Debug.Log("Game State Reset: Ready for another run.");
+        LogHandler.Log("Game State Reset: Ready for another run.");
 
         isPaused = false;
         Music.GetComponent<AudioSource>().enabled = true;
@@ -58,6 +58,18 @@ public class MenuFunctionality : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //tell me every frame if the QTE is actually there and active.
+        // TEST THIS: Start the main game scene, and monitor this if else statement.
+        if (QTEPanel != null)
+        {
+            
+            LogHandler.Log("The QTE Panel is exists.");
+        }
+        else
+        {
+            LogHandler.Log("The QTE Panel doesn't exist.");
+        }
+
         //exit update if this is happening:
         if (isGameOver) return;
 
@@ -74,7 +86,7 @@ public class MenuFunctionality : MonoBehaviour
 
             if (SceneManager.GetActiveScene().buildIndex == 0)
             {
-                Debug.Log("In Main Menu: Esc disabled.");
+                LogHandler.Log("In Main Menu: Esc disabled.");
                 return; // 'return' exits the function immediately so nothing below runs.
             }
 
@@ -90,7 +102,7 @@ public class MenuFunctionality : MonoBehaviour
             else
             {
                 ResumeGame();
-                Debug.Log("Game Paused");
+                LogHandler.Log("Game Paused");
             }
         }
 
@@ -166,7 +178,6 @@ public class MenuFunctionality : MonoBehaviour
     public void Quit()
     {
         Application.Quit();
-        Debug.Log("Application has quit");
         LogHandler.Log("The Application has come to an end.");
     }
 
@@ -203,7 +214,7 @@ public class MenuFunctionality : MonoBehaviour
 
         // Wait for the animation to cover the screen
         yield return new WaitForSeconds(SceneTransitionTime);
-        Debug.Log("<color=cyan>Co-routine for animation has been triggered</color>");
+        LogHandler.Log("Co-routine for animation has been triggered");
 
         // 3. HIDE the Main Menu UI elements while the screen is black
         if (MainMenu != null)
@@ -223,7 +234,7 @@ public class MenuFunctionality : MonoBehaviour
         {
             LogHandler.Log("The animation trigger has been set to 'End'");
             transition.SetTrigger("End");
-            transition.Update(0f);
+            transition.Update(-1f);
         }
 
         // 5. Explicitly ensure your pause screen starts completely turned off in the new scene
@@ -237,12 +248,12 @@ public class MenuFunctionality : MonoBehaviour
         {
             // Level Loaded, QTE Panel has been activated.
             QTEPanel.SetActive(true);
-            Debug.Log("<color=brown>Level Loaded, QTE Panel has been activated</color>");
+            LogHandler.Log("Level Loaded, QTE Panel has been activated");
         }
 
         // 7. Make the UI interactive again
         if (canvasGroup != null) canvasGroup.blocksRaycasts = false;
-        Debug.Log("<color=brown>UI should now be interactive again</color>");
+        LogHandler.Log("UI should now be interactive again");
     }
 
     public void LoadMenu()
@@ -251,7 +262,7 @@ public class MenuFunctionality : MonoBehaviour
         Time.timeScale = 1;
         Music.GetComponent<AudioSource>().enabled = false;
 
-        Debug.Log("<color=maroon>Menu Scene has now been loaded</color>");
+        LogHandler.Log("Menu Scene has now been loaded");
 
     }
 

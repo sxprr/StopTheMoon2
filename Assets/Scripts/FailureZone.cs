@@ -8,7 +8,7 @@ public class FailureZone : MonoBehaviour
     {
         if(other.CompareTag("Celestial"))
         {
-            Debug.Log("Game over: Impact detected");
+            LogHandler.Log("Game over: Impact detected");
             GameEvents.TriggerFailure();
         }
     }

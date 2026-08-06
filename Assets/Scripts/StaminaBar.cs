@@ -22,7 +22,7 @@ public class StaminaBar : MonoBehaviour
     private void UpdateVisuals(float percentage)
     {
         scrollbar.size = percentage;
-        Debug.Log("UI Updated to: " + percentage);
+        LogHandler.Log("UI Updated to: " + percentage);
     }
 
 

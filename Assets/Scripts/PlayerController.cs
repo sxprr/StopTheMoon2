@@ -22,11 +22,11 @@ public class PlayerController : MonoBehaviour
         // 1. Handle Camera Look
         HandleLook();
 
-        Debug.Log("Trigger distance is " + qteTriggerDistance + ", and the boolean is now set to " + qteTriggered);
+        LogHandler.Log("Trigger distance is " + qteTriggerDistance + ", and the boolean is now set to " + qteTriggered);
 
         float distanceToMoon1 = Vector3.Distance(transform.position, moonTransform.position);
 
-        Debug.Log($"<color=pink>Moon's current distance is :</color> " + distanceToMoon1);
+        LogHandler.Log($"<color=pink>Moon's current distance is :</color> " + distanceToMoon1);
 
         Debug.DrawRay(transform.position, transform.forward * 5f, Color.blue);
         // Instead of doing logic here, we just tell the manager to go!

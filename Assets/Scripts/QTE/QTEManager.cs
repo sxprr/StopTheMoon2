@@ -15,7 +15,7 @@ public class QTEManager : MonoBehaviour
         currentIndex = 0;
         isQTEActive = true;
         qteUI.ResetUI();
-        Debug.Log("QTE Started!");
+        LogHandler.Log("QTE Started!");
     }
 
     void Update()
@@ -72,12 +72,12 @@ public class QTEManager : MonoBehaviour
         isQTEActive = false;
         if (success)
         {
-            Debug.Log("QTE Complete! Triggering action...");
+            LogHandler.Log("QTE Complete! Triggering action...");
             // You could call an event here or a specific function
         }
         else
         {
-            Debug.Log("QTE Failed.");
+            LogHandler.Log("QTE Failed.");
             currentIndex = 0;
         }
     }
