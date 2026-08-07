@@ -67,12 +67,34 @@ public class SoundManager : MonoBehaviour
     private void OnEnable()
     {
         GameEvents.OnMoonResist += PlayButtonSound;
+        GameEvents.OnQTEBegin += ReducePitch;
+        GameEvents.OnPlayerImpact += resetPitch;
+        GameEvents.OnVictoryAchieved += resetPitch;
     }
 
     private void OnDisable()
     {
         GameEvents.OnMoonResist -= PlayButtonSound;
+        GameEvents.OnQTEBegin -= ReducePitch;
+        GameEvents.OnPlayerImpact -= resetPitch;
+        GameEvents.OnVictoryAchieved -= resetPitch;
     }
+
+    public void ReducePitch()
+    {
+        // reduce the music pitch when we slow down time.
+        // reduce time.
+        MusicSource.pitch = 0.5f;
+        Time.timeScale = 0.6f;
+    }
+
+    public void resetPitch()
+    {
+        // reset the music pitch when the QTE is over.
+        MusicSource.pitch = 1.56f;
+        // reset the time, also.
+        Time.timeScale = 0.6f;
+    }    
 
     // listen to E event.
     public void PlayButtonSound()

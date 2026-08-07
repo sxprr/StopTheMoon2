@@ -73,7 +73,8 @@ public class QTEManager : MonoBehaviour
         if (success)
         {
             LogHandler.Log("QTE Complete! Triggering action...");
-            // You could call an event here or a specific function
+            GameEvents.TriggerVictory();
+            
         }
         else
         {

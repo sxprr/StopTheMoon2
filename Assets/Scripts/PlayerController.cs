@@ -52,7 +52,9 @@ public class PlayerController : MonoBehaviour
                 Debug.Log($"<color=orange>GATE LOCKED.</color> qteTriggered is now: {qteTriggered}. QTE System starting.");
 
                 qteManager.StartQTE();
+                GameEvents.TriggerQTEBegin();
                 HandleRay();
+                
 
             }
         }

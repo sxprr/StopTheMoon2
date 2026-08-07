@@ -115,6 +115,6 @@ public class MoonController : MonoBehaviour
         // 3. Visual confirmation
         GetComponent<Renderer>().material.color = new Color32(90, 215, 255, 255);
 
-        Debug.Log("<color=cyan>Moon Logic:</color> Velocity killed. Moon is officially frozen.");
+        LogHandler.Log("<color=cyan>Moon Logic:</color> Velocity killed. Moon is officially frozen.");
     }
 }

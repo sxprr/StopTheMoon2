@@ -1345,6 +1345,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!82 &1294284279 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 424875754084069, guid: 640d55de9d6afa94781a558c30eabf7b, type: 3}
+  m_PrefabInstance: {fileID: 5959527343498963757}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1339278809
 GameObject:
   m_ObjectHideFlags: 0
@@ -1974,6 +1979,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6830524721601523767, guid: b6b4e5cbbef5d494a8eeb45f9e899be8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2183,6 +2192,10 @@ PrefabInstance:
     - target: {fileID: 4009242168476682862, guid: 36331fb844981164f8f8583e7df6e4b3, type: 3}
       propertyPath: m_Name
       value: VictoryMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 4009242168476682862, guid: 36331fb844981164f8f8583e7df6e4b3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4407924535802037316, guid: 36331fb844981164f8f8583e7df6e4b3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -2430,6 +2443,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pause Menu
       objectReference: {fileID: 0}
+    - target: {fileID: 7683394984034243075, guid: 6c77025b376b24c4aa2367a8fe38cd09, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2445,6 +2462,18 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 424875754084069, guid: 640d55de9d6afa94781a558c30eabf7b, type: 3}
       propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 424875754084069, guid: 640d55de9d6afa94781a558c30eabf7b, type: 3}
+      propertyPath: m_Pitch
+      value: 1.56
+      objectReference: {fileID: 0}
+    - target: {fileID: 424875754084069, guid: 640d55de9d6afa94781a558c30eabf7b, type: 3}
+      propertyPath: m_Volume
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 424875754084069, guid: 640d55de9d6afa94781a558c30eabf7b, type: 3}
+      propertyPath: m_PlayOnAwake
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 338872876528410657, guid: 640d55de9d6afa94781a558c30eabf7b, type: 3}
@@ -2495,6 +2524,10 @@ PrefabInstance:
       propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3107953829475729604, guid: 640d55de9d6afa94781a558c30eabf7b, type: 3}
+      propertyPath: MusicSource
+      value: 
+      objectReference: {fileID: 1294284279}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

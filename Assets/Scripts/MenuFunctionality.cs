@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using JetBrains.Annotations;
 
 public class MenuFunctionality : MonoBehaviour
 {
@@ -58,17 +59,6 @@ public class MenuFunctionality : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //tell me every frame if the QTE is actually there and active.
-        // TEST THIS: Start the main game scene, and monitor this if else statement.
-        if (QTEPanel != null)
-        {
-            
-            LogHandler.Log("The QTE Panel is exists.");
-        }
-        else
-        {
-            LogHandler.Log("The QTE Panel doesn't exist.");
-        }
 
         //exit update if this is happening:
         if (isGameOver) return;
@@ -166,6 +156,7 @@ public class MenuFunctionality : MonoBehaviour
         // stop time and show results
         Time.timeScale = 0;
         VictoryInterface.SetActive(true);
+        QTEPanel.SetActive(false);
 
         // unlock the cursor for the player.
 
@@ -237,23 +228,35 @@ public class MenuFunctionality : MonoBehaviour
             transition.Update(-1f);
         }
 
+        // 6. Now that the level is loaded, deactive the victory menu
+        if (VictoryInterface != null)
+        {
+            // Level Loaded, QTE Panel has been activated.
+            VictoryInterface.SetActive(false);
+            LogHandler.Log("Victory Panel is turned off during transition");
+        }
+
         // 5. Explicitly ensure your pause screen starts completely turned off in the new scene
         if (PauseInterface != null)
         {
             PauseInterface.SetActive(false);
         }
+        
+        // 7. Make the UI interactive again
+        if (canvasGroup != null) canvasGroup.blocksRaycasts = false;
+        LogHandler.Log("UI should now be interactive again");
+        
+    }
 
+    public void ActivateQTEPanel()
+    {
         // 6. Now that the level is loaded, safely activate the QTE panel mechanics
         if (QTEPanel != null)
         {
             // Level Loaded, QTE Panel has been activated.
             QTEPanel.SetActive(true);
-            LogHandler.Log("Level Loaded, QTE Panel has been activated");
+            LogHandler.Log("QTE Panel has been activated");
         }
-
-        // 7. Make the UI interactive again
-        if (canvasGroup != null) canvasGroup.blocksRaycasts = false;
-        LogHandler.Log("UI should now be interactive again");
     }
 
     public void LoadMenu()
@@ -298,6 +301,7 @@ public class MenuFunctionality : MonoBehaviour
     {
         GameEvents.OnVictoryAchieved += DisplayVictory;
         GameEvents.OnPlayerImpact += DisplayGameOver;
+        GameEvents.OnQTEBegin += ActivateQTEPanel;
         SceneManager.sceneLoaded += OnSceneLoaded;
 
     }
@@ -307,6 +311,7 @@ public class MenuFunctionality : MonoBehaviour
     {
         GameEvents.OnVictoryAchieved -= DisplayVictory;
         GameEvents.OnPlayerImpact -= DisplayGameOver;
+        GameEvents.OnQTEBegin -= ActivateQTEPanel;
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
     
